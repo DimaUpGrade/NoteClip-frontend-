@@ -1,4 +1,4 @@
-<template>
+\<template>
   <div class="home">
 
     <img id="logo_pic" alt="Noteclip logo" src="../assets/logo.png">
