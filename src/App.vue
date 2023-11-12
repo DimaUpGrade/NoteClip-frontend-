@@ -1,12 +1,30 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/registration" tag="button">Registration</router-link>
+  </nav> -->
   <router-view/>
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Old+Uyghur&family=Roboto:wght@700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
