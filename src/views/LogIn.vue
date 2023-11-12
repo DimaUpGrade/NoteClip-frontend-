@@ -30,7 +30,7 @@ export default {
     methods: {
         loginAccount () {
             if (login.value == "user" & (password.value == "pass")) {
-                router.replace({ path: '/board-list'})
+                router.push({ path: '/board-list'})
             }
             else {
                 alert("Неверные данные авторизации!")

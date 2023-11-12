@@ -30,10 +30,10 @@ export default {
   },
   methods : {
     go_login () {
-      router.replace({ path: '/login'})
+      router.push({ path: '/login'})
     },
     go_registration () {
-      router.replace({ path: '/registration'})
+      router.push({ path: '/registration'})
     }
   }
 }

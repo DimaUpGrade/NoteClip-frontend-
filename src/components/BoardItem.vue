@@ -26,7 +26,7 @@ export default {
     methods: {
         goToBoard(id) {
             // alert(id);
-            router.replace({ path: '/board/' + id});
+            router.push({ path: '/board/' + id});
         }
     }
 }
