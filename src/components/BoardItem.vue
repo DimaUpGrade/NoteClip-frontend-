@@ -11,7 +11,12 @@
 
 <script>
 import router from '../router';
+
 export default {
+
+    data() {
+
+    },
     props: {
         board: {
             type: Object,
@@ -20,9 +25,8 @@ export default {
     },
     methods: {
         goToBoard(id) {
-            alert(id);
-
-            router.push({ path: '/board' + '-' + id, params: {id}})
+            // alert(id);
+            router.replace({ path: '/board/' + id});
         }
     }
 }
