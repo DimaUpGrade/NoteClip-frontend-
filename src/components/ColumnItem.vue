@@ -1,6 +1,6 @@
 <template>
-    <div id="div_column">
-        <h2>{{ column.title }}</h2>
+    <div class="div_column">
+        <h2 class="h2_column_title">{{ column.title }}</h2>
         <!-- <p>{{ column.tasks }}</p> -->
         <!-- <p>{{ column.tasks }}</p> -->
         <TaskList 
@@ -38,3 +38,19 @@ export default {
     components: {TaskList}
 }
 </script>
+
+<style scoped>
+
+.div_column {
+    height: 60vh;
+    background-color: var(--primary);
+    width: 15vh;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.h2_column_title {
+    font-size: 20px;
+}
+
+</style>

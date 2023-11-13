@@ -22,7 +22,7 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  width: 98vw;
 }
 
 #app {

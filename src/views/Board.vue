@@ -1,9 +1,11 @@
 <template>
+    <!-- <header>
+        asd
+    </header> -->
+    <div id="main_div_board">
+        <ColumnList v-bind:board="board" />
+    </div>
     <!-- {{ board.id }} -->
-    <ColumnList 
-        v-bind:board="board"
-    />
-    
 </template>
 
 <script>
@@ -20,14 +22,14 @@ export default {
         }
     },
     methods: {
-        
+
     },
     components: {
         ColumnList
     },
     created() {
         const id = this.$route.params.id;
-        
+
         // Здесь будет вызываться апи к доске по id
         if (id == 1) {
             this.board = board_1.columns
@@ -39,3 +41,18 @@ export default {
 }
 
 </script>
+
+<style scoped>
+
+#main_div_board {
+    display: flex;
+    align-items: top;
+    padding: 1rem 0;
+    justify-content: center;
+    height: 86vh;
+    width: 95vw;
+    border-radius: 10px;
+    background-color: #88a2c2;;
+}
+
+</style>

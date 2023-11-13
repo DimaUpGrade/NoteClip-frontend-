@@ -1,6 +1,5 @@
 <template>
-    <div>
-
+    <div class="task_div">
         <p>{{ task.title }}</p>
     </div>
 </template>
@@ -20,3 +19,12 @@ export default {
 }
 
 </script>
+
+<style scoped>
+
+.task_div {
+    margin-top: 1rem;
+    
+}
+
+</style>

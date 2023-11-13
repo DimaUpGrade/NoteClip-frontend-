@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="column_list_main">
         <ColumnItem
             v-for="column in board"
             v-bind:column="column"
@@ -27,7 +27,15 @@ export default {
 <style scoped>
     div {
         display: inline-block;
-        padding: 2rem;
-        margin: 2rem;
+        margin: 0rem 1rem;
+    }
+
+    #column_list_main {
+        display: flex;
+        padding: 1rem;
+        width: 100vw;
+        text-align: start;
+        align-items: flex-start;
+        
     }
 </style>
