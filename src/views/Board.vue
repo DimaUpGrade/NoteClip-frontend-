@@ -12,6 +12,9 @@ import board_1 from '../test_data/board-1.json'
 import board_2 from '../test_data/board-2.json'
 
 import ColumnList from '@/components/ColumnList.vue'
+import axios from '../network'
+
+console.log(axios.getPosts())
 
 export default {
     data() {
