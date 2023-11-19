@@ -6,7 +6,6 @@ import Boards from '../views/Boards.vue'
 import Board from '../views/Board.vue'
 // import Test from '../views/Test.vue'
 
-
 const routes = [
   {
     path: '/',
@@ -41,8 +40,6 @@ const routes = [
     component: Board,
   }
 ]
-
-
 
 const router = createRouter({
   history: createWebHistory(),
