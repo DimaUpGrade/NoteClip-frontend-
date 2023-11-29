@@ -24,7 +24,8 @@ export default {
     name: 'Boards',
     mounted() {
         axios
-            .get('http://127.0.0.1:10000/api/user-boards/')
+            .get('http://127.0.0.1:10000/api/user-boards/', {headers:{
+                'X-CSRFToken':Cookies.get('csrftoken')}})
             .then(response => this.boards = response.data);
     },
     

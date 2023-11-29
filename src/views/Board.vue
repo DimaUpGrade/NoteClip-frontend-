@@ -11,17 +11,19 @@
 </template>
 
 <script>
-// убрать, когда будет через апи
-import board_1 from '../test_data/board-1.json'
-import board_2 from '../test_data/board-2.json'
 import BoardHeader from '@/components/BoardHeader.vue'
 import ColumnList from '@/components/ColumnList.vue'
+import axios from 'axios';
+axios.defaults.xsrfCookieName = 'csrfToken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
+
 
 export default {
     data() {
         return {
             board: {},
-            title: "penis",
+            title: "title",
         }
     },
     methods: {
@@ -32,16 +34,10 @@ export default {
     },
     created() {
         const id = this.$route.params.id;
-
-        // Здесь будет вызываться апи к доске по id
-        if (id == 1) {
-            this.title = board_1.title
-            this.board = board_1.columns
-        }
-        else if (id == 2) {
-            this.title = board_2.title
-            this.board = board_2.columns
-        }
+        axios
+            .get('http://127.0.0.1:10000/api/boards/' + id, {headers:{
+                'X-CSRFToken':Cookies.get('csrftoken')}})
+            .then(response => {this.board = response.data.columns, this.title = response.data.title});
     }
 }
 

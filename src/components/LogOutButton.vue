@@ -12,15 +12,26 @@ axios.defaults.xsrfCookieName = 'csrfToken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
+// const API = axios.create({
+//     baseURL: `http://127.0.0.1:10000/api/`,
+//     headers: {
+//         Accept: "application/json",
+//         "Content-type": "application/json"
+//     },
+//     timeout: 10000,
+//     withCredentials: true
+// });
+
 export default {
-    data () {
+    data() {
         return {
 
         }
     },
     methods: {
         logout() {
-            axios.post('http://127.0.0.1:10000/api/logout/', {})
+            axios.post('http://127.0.0.1:10000/api/logout/', {}, {headers:{
+                'X-CSRFToken':Cookies.get('csrftoken')}})
                 .then((response) => {
                     alert("Успешный выход!");
                     router.push({ path: '/' })

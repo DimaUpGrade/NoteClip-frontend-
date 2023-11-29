@@ -48,9 +48,6 @@ export default {
             // else {
             //     alert("Неверные данные авторизации!")
             // }
-
-
-
             axios.post('http://127.0.0.1:10000/api/login/', {
                 username: login.value,
                 password: password.value
@@ -65,7 +62,6 @@ export default {
                 })
                 .catch((error) => {
                     if (error.response.status == '500') {
-                        // alert("penis");
                         this.status = "Неверные данные авторизации!"; 
                     }
                     // alert(error.response.data);
