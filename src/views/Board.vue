@@ -18,6 +18,7 @@ axios.defaults.xsrfCookieName = 'csrfToken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
+// создать папку network и сделать там файл со всеми данными для axios и API
 
 export default {
     data() {
