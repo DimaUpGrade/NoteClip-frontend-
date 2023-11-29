@@ -43,14 +43,21 @@ export default {
 
 .div_column {
     height: 60vh;
-    background-color: var(--primary);
-    width: 15vh;
-    padding: 1rem;
-    border-radius: 10px;
+    /* background-color: var(--primary); */
+    width: 25vh;
+    padding: 3vh;
+    /* border-radius: 10px; */
+    border: 3px dotted var(--primary);
+
 }
 
 .h2_column_title {
-    font-size: 20px;
+    font-size: 3.0vh;
+    /* text-decoration: underline; */
+    text-align: center;
+    color: white;
+    -webkit-text-stroke: 0.2vh var(--text);
+
 }
 
 </style>

@@ -7,19 +7,30 @@
 </template>
 
 <script>
+
 import BoardList from '@/components/BoardList.vue'
-import user_boards from '../test_data/user-boards.json'
+// import user_boards from '../test_data/user-boards.json'
+import axios from 'axios';
+// import { response } from 'express';
+
+
 
 export default {
     name: 'Boards',
+    mounted() {
+        axios
+            .get('http://localhost:10000/api/user-boards/')
+            .then(response => this.boards = response.data);
+    },
+    
     data () {
         return {
-            boards: user_boards
+            boards: []
         }
     },
     components: {
         BoardList
-    }
+    }    
 }
 
 </script>

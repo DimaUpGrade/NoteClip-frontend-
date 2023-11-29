@@ -19,10 +19,10 @@
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
   height: 100vh;
-  width: 98vw;
+  width: calc(100vw - scrollbarWidth);
 }
 
 #app {

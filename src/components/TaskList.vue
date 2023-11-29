@@ -22,7 +22,7 @@ export default {
 
 .task_list {
     margin-top: 2rem;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     font-size: 15px;
 }
 

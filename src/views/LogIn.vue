@@ -10,31 +10,66 @@
                 <input type="text" id="login">
                 <input type="text" id="password">
             </div>
-            
+
+
+        </div>
+
+        <div>
+            <h2 id="status_h2">{{ status }}</h2>
         </div>
 
         <input type="button" id="submit-button" @click="loginAccount" value="Войти">
         <router-link to="/registration" tag="button">Нет аккаунта? Зарегистрируйтесь прямо сейчас!</router-link>
-        <router-view/>
+        <router-view />
     </div>
 </template>
 
 <script>
 import { logicalExpression } from '@babel/types';
 import router from '../router';
+import axios from 'axios';
+
+axios.defaults.xsrfCookieName = 'csrfToken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+
 
 export default {
-    data () {
-
+    data() {
+        return {
+            status: ""
+        };
     },
     methods: {
-        loginAccount () {
-            if (login.value == "user" & (password.value == "pass")) {
-                router.push({ path: '/board-list'})
-            }
-            else {
-                alert("Неверные данные авторизации!")
-            }
+        loginAccount() {
+            // if (login.value == "user" & (password.value == "pass")) {
+            //     router.push({ path: '/board-list'})
+            // }
+            // else {
+            //     alert("Неверные данные авторизации!")
+            // }
+
+            axios.post('http://localhost:10000/api/login/', {
+                username: login.value,
+                password: password.value
+            })
+                .then((response) => {
+                    // alert(response);
+                    alert(login.value);
+                    alert(password.value);
+                    alert(response.data.username);
+                    router.push({ path: '/board-list'})
+                    
+                })
+                .catch((error) => {
+                    if (error.response.status == '500') {
+                        // alert("penis");
+                        this.status = "Неверные данные авторизации!"; 
+                    }
+                    // alert(error.response.data);
+                    console.log(error);
+                });
+
         }
     }
 }
@@ -48,5 +83,10 @@ body {
 
 h1 {
     margin-bottom: 10vh;
+}
+
+#status_h2 {
+    margin-top: 5vh;
+    color: red;
 }
 </style>
