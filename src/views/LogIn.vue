@@ -31,7 +31,7 @@ import axios from 'axios';
 
 axios.defaults.xsrfCookieName = 'csrfToken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-
+axios.defaults.withCredentials = true;
 
 
 export default {
@@ -49,17 +49,19 @@ export default {
             //     alert("Неверные данные авторизации!")
             // }
 
-            axios.post('http://localhost:10000/api/login/', {
+
+
+            axios.post('http://127.0.0.1:10000/api/login/', {
                 username: login.value,
                 password: password.value
             })
                 .then((response) => {
                     // alert(response);
-                    alert(login.value);
-                    alert(password.value);
-                    alert(response.data.username);
-                    router.push({ path: '/board-list'})
-                    
+                    // alert(login.value);
+                    // alert(password.value);
+                    // alert(response.data.username);
+                    router.push({ path: '/board-list' })
+
                 })
                 .catch((error) => {
                     if (error.response.status == '500') {
