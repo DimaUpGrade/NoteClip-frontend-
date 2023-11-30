@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Страница регистрации</h1>
-        
+
         <div class="data-block">
             <div class="data-block-elements">
                 <p>Введите email: </p>
@@ -11,28 +11,78 @@
             <div class="data-block-elements">
                 <input type="text" id="email">
                 <input type="text" id="login">
-                <input type="text" id="password">
+                <input type="password" id="password">
             </div>
-            
+
         </div>
         <h2 id="alert_h1">Work in progress!</h2>
-        <input type="button" @click="showMessage" id="submit-button" value="Зарегистрироваться">
+        <input type="button" @click="tryRegister" id="submit-button" value="Зарегистрироваться">
         <router-link to="/login" tag="button">Уже зарегистрированы?</router-link>
-        <router-view/>
+        <router-view />
     </div>
 </template>
 
 <script>
 import { logicalExpression } from '@babel/types';
 import router from '../router';
+import { API_URL, axios } from '../network';
 
 export default {
     data() {
 
     },
     methods: {
-        showMessage () {
-            alert_h1.style.display= "block";
+        tryRegister() {
+            let email_ = email.value;
+            let login_ = login.value;
+            let password_ = password.value;
+
+            const regExp_email = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (email_ != "" && login_ != "" && password_ != "") {
+                if (email_.match(regExp_email)) {
+                    alert('email norm');
+                    // тут функцию проверки логина на занятость надо с вызовом апи
+                    //
+
+                    axios.post(API_URL + '/api/register/', {
+                        username: login_,
+                        password: password_,
+                        email: email_
+                    })
+                        .then((response) => {
+                            axios.post(API_URL + '/api/login/', {
+                                username: login.value,
+                                password: password.value
+                            })
+                                .then((response) => {
+                                    router.push({ path: '/board-list' })
+
+                                })
+                                .catch((error) => {
+                                    if (error.response.status == '500') {
+                                        this.status = "Ошибка при авторизации!";
+                                    }
+                                    console.log(error);
+                                });
+                        })
+                        .catch((error) => {
+                            if (error.response.status == '500') {
+                                this.status = "Неверные данные регистрации!";
+                            }
+                            console.log(error);
+                        });
+                }
+                else {
+                    alert("Убедитесь в правильности написания email!");
+                }
+            }
+            else {
+                alert("Не все поля заполнены!");
+            }
+
+
+            // alert_h1.style.display= "block";
         }
     }
 }
@@ -77,14 +127,15 @@ input {
 }
 
 #submit-button:hover {
-  background-color: var(--accent);
+    background-color: var(--accent);
 }
 
 #submit-button:active {
-  background-color: #88a2c2;
+    background-color: #88a2c2;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
     border-radius: 5px;
     border: 1px solid var(--text);
 }
@@ -97,14 +148,11 @@ input[type="text"] {
 .data-block-elements input {
     margin-bottom: 1vh;
     padding: 7px;
-    
+
 }
 
 .data-block-elements p {
     margin-bottom: 1vh;
     padding: 5px 7px 7px 7px;
 }
-
-
-
 </style>

@@ -6,21 +6,8 @@
 
 <script>
 import router from '../router';
-import axios from 'axios';
 
-axios.defaults.xsrfCookieName = 'csrfToken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
-
-// const API = axios.create({
-//     baseURL: `http://127.0.0.1:10000/api/`,
-//     headers: {
-//         Accept: "application/json",
-//         "Content-type": "application/json"
-//     },
-//     timeout: 10000,
-//     withCredentials: true
-// });
+import {API_URL, axios} from '../network';
 
 export default {
     data() {
@@ -30,7 +17,7 @@ export default {
     },
     methods: {
         logout() {
-            axios.post('http://127.0.0.1:10000/api/logout/', {}, {headers:{
+            axios.post(API_URL + '/api/logout/', {}, {headers:{
                 'X-CSRFToken':Cookies.get('csrftoken')}})
                 .then((response) => {
                     alert("Успешный выход!");

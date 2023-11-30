@@ -4,21 +4,18 @@
     </header> -->
     <BoardHeader v-bind:title="title" />
     <div id="main_div_board">
-        
+
         <ColumnList v-bind:board="board" />
     </div>
     <!-- {{ board.id }} -->
 </template>
 
 <script>
+
 import BoardHeader from '@/components/BoardHeader.vue'
 import ColumnList from '@/components/ColumnList.vue'
-import axios from 'axios';
-axios.defaults.xsrfCookieName = 'csrfToken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
 
-// создать папку network и сделать там файл со всеми данными для axios и API
+import { API_URL, axios } from '../network';
 
 export default {
     data() {
@@ -36,16 +33,18 @@ export default {
     created() {
         const id = this.$route.params.id;
         axios
-            .get('http://127.0.0.1:10000/api/boards/' + id, {headers:{
-                'X-CSRFToken':Cookies.get('csrftoken')}})
-            .then(response => {this.board = response.data.columns, this.title = response.data.title});
+            .get(API_URL + '/api/boards/' + id, {
+                headers: {
+                    'X-CSRFToken': Cookies.get('csrftoken')
+                }
+            })
+            .then(response => { this.board = response.data.columns, this.title = response.data.title });
     }
 }
 
 </script>
 
 <style scoped>
-
 body {
     padding: auto 0;
 }
@@ -60,7 +59,7 @@ body {
     height: 86vh;
     width: 95vw;
     border-radius: 10px;
-    background-color: #88a2c2;;
+    background-color: #88a2c2;
+    ;
 }
-
 </style>

@@ -10,8 +10,6 @@
                 <input type="text" id="login">
                 <input type="text" id="password">
             </div>
-
-
         </div>
 
         <div>
@@ -25,14 +23,8 @@
 </template>
 
 <script>
-import { logicalExpression } from '@babel/types';
 import router from '../router';
-import axios from 'axios';
-
-axios.defaults.xsrfCookieName = 'csrfToken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
-
+import { API_URL, axios } from '../network';
 
 export default {
     data() {
@@ -42,29 +34,18 @@ export default {
     },
     methods: {
         loginAccount() {
-            // if (login.value == "user" & (password.value == "pass")) {
-            //     router.push({ path: '/board-list'})
-            // }
-            // else {
-            //     alert("Неверные данные авторизации!")
-            // }
-            axios.post('http://127.0.0.1:10000/api/login/', {
+            axios.post(API_URL + '/api/login/', {
                 username: login.value,
                 password: password.value
             })
                 .then((response) => {
-                    // alert(response);
-                    // alert(login.value);
-                    // alert(password.value);
-                    // alert(response.data.username);
                     router.push({ path: '/board-list' })
 
                 })
                 .catch((error) => {
                     if (error.response.status == '500') {
-                        this.status = "Неверные данные авторизации!"; 
+                        this.status = "Неверные данные авторизации!";
                     }
-                    // alert(error.response.data);
                     console.log(error);
                 });
 
