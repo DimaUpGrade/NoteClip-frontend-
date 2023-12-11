@@ -39,8 +39,8 @@ export default {
                 password: password.value
             })
                 .then((response) => {
-                    router.push({ path: '/board-list' })
-
+                    localStorage.setItem("token", response.data['Token']);
+                    router.push({ path: '/board-list' });
                 })
                 .catch((error) => {
                     if (error.response.status == '500') {

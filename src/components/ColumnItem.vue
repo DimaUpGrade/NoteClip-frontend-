@@ -1,8 +1,6 @@
 <template>
-    <div class="div_column">
+    <div class="div_column" v-bind:id="column.id">
         <h2 class="h2_column_title">{{ column.title }}</h2>
-        <!-- <p>{{ column.tasks }}</p> -->
-        <!-- <p>{{ column.tasks }}</p> -->
         <TaskList 
             v-bind:tasks="tasks"
         />

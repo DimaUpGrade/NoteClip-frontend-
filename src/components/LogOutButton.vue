@@ -7,7 +7,7 @@
 <script>
 import router from '../router';
 
-import {API_URL, axios} from '../network';
+import { API_URL, axios } from '../network';
 
 export default {
     data() {
@@ -17,16 +17,23 @@ export default {
     },
     methods: {
         logout() {
-            axios.post(API_URL + '/api/logout/', {}, {headers:{
-                'X-CSRFToken':Cookies.get('csrftoken')}})
+            axios.post(API_URL + '/api/logout/', {}, {
+                headers: {
+                    // 'X-CSRFToken': Cookies.get('csrftoken')
+                    'Authorization': 'Token ' + localStorage.getItem("token")
+                }
+            })
                 .then((response) => {
                     alert("Успешный выход!");
-                    router.push({ path: '/' })
+                    localStorage.removeItem("token");
+                    // localStorage.setItem("token", null);
+                    router.push({ path: '/' });
 
                 })
                 .catch((error) => {
                     if (error.response.status) {
-                        alert("Пизда");
+                        router.push({ path: '/' });
+                        // alert("Ошибка!");
                     }
                 });
 

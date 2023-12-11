@@ -4,6 +4,9 @@
             v-for="task in tasks"
             v-bind:task="task"
         />
+        <div class="task_div">
+            <p>+ Добавить</p>
+        </div>
     </div>
 </template>
 
@@ -24,6 +27,12 @@ export default {
     margin-top: 2rem;
     /* background-color: blueviolet; */
     font-size: 15px;
+}
+
+.task_div {
+    margin-top: 20px;
+    background-color: var(--primary);
+    border-radius: 0.3vw;
 }
 
 </style>

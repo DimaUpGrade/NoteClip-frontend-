@@ -1,5 +1,5 @@
 <template>
-    <div class="task_div">
+    <div class="task_div" v-bind:id="task.id">
         <p class="task_p">{{ task.title }}</p>
         <div style="display: inline-flex;">
             <button class="edit_button">✎</button>

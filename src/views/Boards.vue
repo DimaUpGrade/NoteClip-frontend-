@@ -8,20 +8,27 @@
 <script>
 
 import LogOutButton from '@/components/LogOutButton.vue';
-import BoardList from '@/components/BoardList.vue'
-
+import BoardList from '@/components/BoardList.vue';
+import { tokenIsSet } from '../validation';
 import { API_URL, axios } from '../network';
+import router from '../router';
+
 
 export default {
     name: 'Boards',
     mounted() {
-        axios
+        if (tokenIsSet()) {
+            axios
             .get(API_URL + '/api/user-boards/', {
                 headers: {
-                    'X-CSRFToken': Cookies.get('csrftoken')
+                    'Authorization': 'Token ' + localStorage.getItem("token")
                 }
             })
             .then(response => this.boards = response.data);
+        }
+        else {
+            router.replace({ path: '/' });
+        }
     },
     data() {
         return {
