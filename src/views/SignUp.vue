@@ -23,9 +23,7 @@
 </template>
 
 <script>
-import { logicalExpression } from '@babel/types';
-import router from '../router';
-import { API_URL, axios } from '../network';
+import { API_URL, axios, login_account } from '../network';
 
 export default {
     data() {
@@ -51,20 +49,7 @@ export default {
                         email: email_
                     })
                         .then((response) => {
-                            axios.post(API_URL + '/api/login/', {
-                                username: login.value,
-                                password: password.value
-                            })
-                                .then((response) => {
-                                    router.push({ path: '/board-list' })
-
-                                })
-                                .catch((error) => {
-                                    if (error.response.status == '500') {
-                                        this.status = "Ошибка при авторизации!";
-                                    }
-                                    console.log(error);
-                                });
+                            login_account(login_, password_)
                         })
                         .catch((error) => {
                             if (error.response.status == '500') {

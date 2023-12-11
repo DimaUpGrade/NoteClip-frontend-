@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import router from '../router';
-import { API_URL, axios } from '../network';
+import { API_URL, axios, login_account } from '../network';
 
 export default {
     data() {
@@ -34,21 +33,7 @@ export default {
     },
     methods: {
         loginAccount() {
-            axios.post(API_URL + '/api/login/', {
-                username: login.value,
-                password: password.value
-            })
-                .then((response) => {
-                    localStorage.setItem("token", response.data['Token']);
-                    router.push({ path: '/board-list' });
-                })
-                .catch((error) => {
-                    if (error.response.status == '500') {
-                        this.status = "Неверные данные авторизации!";
-                    }
-                    console.log(error);
-                });
-
+            login_account(login.value, password.value)
         }
     }
 }
