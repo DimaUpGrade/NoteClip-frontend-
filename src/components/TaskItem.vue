@@ -1,15 +1,17 @@
 <template>
-    <div class="task_div" v-bind:id="task.id">
+    <div @dragstart="onDragStart($event, task)" class="task_div" v-bind:id="task.id" draggable="true">
         <p class="task_p">{{ task.title }}</p>
         <div style="display: inline-flex;">
             <button class="edit_button">✎</button>
-            <button class="delete_button">X</button>
-            <input class="date_selector" type="date">
+            <button @click="delete_task(task.id)" class="delete_button">X</button>
+            <!-- <input class="date_selector" type="date"> -->
         </div>        
     </div>
 </template>
 
 <script>
+
+import { remove_task } from '../network';
 
 export default {
     data () {
@@ -19,6 +21,26 @@ export default {
         task: {
             type: Object,
             required: true
+        }
+    },
+
+    methods: {
+        delete_task(id_task) {
+            remove_task(id_task)
+            let task_div = document.getElementById(id_task)
+            task_div.style.display = 'none';
+        }
+    },
+
+    setup () {
+        function onDragStart(e, task) {
+            e.dataTransfer.dropEffect = 'move'
+            e.dataTransfer.effectAllowed = 'move'
+            e.dataTransfer.setData('task_id', task.id)
+        }
+
+        return {
+            onDragStart
         }
     }
 }

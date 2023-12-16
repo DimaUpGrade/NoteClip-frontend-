@@ -4,8 +4,7 @@
     </header> -->
     <BoardHeader v-bind:title="title" />
     <div id="main_div_board">
-
-        <ColumnList v-bind:board="board" />
+        <ColumnList @asd="testAlert()" v-bind:board="board" :key="board"/>
     </div>
     <!-- {{ board.id }} -->
 </template>
@@ -14,31 +13,47 @@
 
 import BoardHeader from '@/components/BoardHeader.vue'
 import ColumnList from '@/components/ColumnList.vue'
+import { onMounted, ref, watch } from 'vue'
+import { API_URL, axios, get_data_board } from '../network';
 
-import { API_URL, axios } from '../network';
+var id_c = -1;
 
 export default {
+    setup() {
+
+    },
+
     data() {
         return {
             board: {},
             title: "title",
+            id_table: {}
         }
     },
     methods: {
-
+        testAlert() {
+            // get_data_board(this.id_table).then(result => this.board = result)
+            get_data_board(this.id_table).then(result => this.board = result)
+        }
     },
     components: {
         ColumnList, BoardHeader
     },
     created() {
         const id = this.$route.params.id;
+        this.id_table = id;
+
         axios
             .get(API_URL + '/api/boards/' + id, {
                 headers: {
-                    'X-CSRFToken': Cookies.get('csrftoken')
+                    // 'X-CSRFToken': Cookies.get('csrftoken')
                 }
             })
-            .then(response => { this.board = response.data.columns, this.title = response.data.title });
+            .then(response => { this.title = response.data.title });
+
+
+        
+        get_data_board(this.id_table).then(result => this.board = result)
     }
 }
 

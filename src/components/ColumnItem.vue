@@ -1,21 +1,21 @@
 <template>
     <div class="div_column" v-bind:id="column.id">
         <h2 class="h2_column_title">{{ column.title }}</h2>
-        <TaskList 
-            v-bind:tasks="tasks"
-        />
+        <TaskList @asd="toParent()" v-bind:id_column="column.id" v-bind:tasks="tasks" />
     </div>
 </template>
 
 <script>
 import TaskList from '@/components/TaskList.vue'
 
+
+
 export default {
     data() {
         return {
             //wrong
             tasks: this.column.tasks
-        } 
+        }
     },
     // props: ["column"],
     props: {
@@ -25,20 +25,21 @@ export default {
         },
     },
     methods: {
-
+        toParent() {
+            this.$emit("asd")
+        }
     },
-    
-    created () {
+
+    created() {
         // const id = this.$route.params.id;
         // this.tasks = board_1.columns
     },
 
-    components: {TaskList}
+    components: { TaskList }
 }
 </script>
 
 <style scoped>
-
 .div_column {
     height: 60vh;
     /* background-color: var(--primary); */
@@ -57,5 +58,4 @@ export default {
     -webkit-text-stroke: 0.2vh var(--text);
 
 }
-
 </style>
