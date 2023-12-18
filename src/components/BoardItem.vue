@@ -42,6 +42,7 @@ export default {
     align-items: center;
     text-align: center;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .board-in-boardlist:hover {

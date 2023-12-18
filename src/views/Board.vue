@@ -4,7 +4,7 @@
     </header> -->
     <BoardHeader v-bind:title="title" />
     <div id="main_div_board">
-        <ColumnList @asd="testAlert()" v-bind:board="board" :key="board"/>
+        <ColumnList @asd="rerender_content()" v-bind:board="board" :key="board"/>
     </div>
     <!-- {{ board.id }} -->
 </template>
@@ -30,10 +30,9 @@ export default {
         }
     },
     methods: {
-        testAlert() {
+        rerender_content() {
             // get_data_board(this.id_table).then(result => this.board = result)
-            get_data_board(this.id_table).then(result => this.board = result)
-            get_data_board(this.id_table).then(result => this.board = result)
+            setTimeout(async () => {get_data_board(this.id_table).then(result => this.board = result)}, 300);
         }
     },
     components: {
