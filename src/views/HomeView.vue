@@ -23,6 +23,7 @@
 
 import { logicalExpression } from '@babel/types';
 import router from '../router';
+import { tokenIsSet } from '../validation';
 
 export default {
   data () {
@@ -35,7 +36,12 @@ export default {
     go_registration () {
       router.push({ path: '/registration'})
     }
-  }
+  },
+  mounted() {
+        if (tokenIsSet()) {
+            router.replace({ path: '/board-list/' });
+        }
+    }
 }
 
 

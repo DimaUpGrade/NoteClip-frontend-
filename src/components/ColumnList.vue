@@ -1,15 +1,21 @@
 <template>
     <div id="column_list_main">
-        <!-- <ColumnItem v-for="column in board" v-bind:column="column" @asd="toParent()" /> -->
         <ColumnItem v-for="column in sortedBoard" v-bind:column="column" @asd="toParent()"
             @increment_counter_columns="columns_counter_increment" @increment_counter_to_zero="columns_counter_to_zero()"/>
-        <div class="div_add_column">
-            <h3 id="new_column_h3">Новый столбец</h3>
-            <input type="text" id="new_column_input">
-            <div @click="add_new_column()" id="new_column_button">
-                <p>Добавить</p>
-            </div>
+        
+        <div id="init_add_column" @click="init_add_new_column()">
+            <h1 id="h1_init_add_column">+</h1>
         </div>
+        
+        <div id="div_add_column" @focusout="add_div_is_not_focus()">
+            <!-- <h3 id="new_column_h3">Новый столбец</h3> -->
+            <input type="text" id="new_column_input" placeholder="Название нового столбца">
+            <!-- <div @click="add_new_column()" id="new_column_button">
+                <p>+</p>
+            </div> -->
+        </div>
+
+        <div id="div_prikol"></div>
     </div>
 </template>
 
@@ -34,12 +40,30 @@ export default {
 
         columns_counter_increment(number) {
             columns_counter = number
-            // alert(columns_counter)
         },
 
-        add_new_column() {
-            let column_title_doc = document.getElementById('new_column_input')
-            // let column_title = column_title_doc.value
+        // add_new_column() {
+        //     const column_title_doc = document.getElementById('new_column_input')
+        //     let number = columns_counter + 1
+            
+        //     if (column_title_doc.value != "") {
+        //         add_column(this.id_board, column_title_doc.value, number)
+        //         columns_counter = 0
+        //         this.$emit("asd")
+        //     }
+        // },
+
+        init_add_new_column() {
+            const init_div = document.getElementById('init_add_column')
+            const add_div = document.getElementById('div_add_column')
+            const input_new_column = document.getElementById('new_column_input')
+            init_div.style.display = 'none'
+            add_div.style.display = 'block'
+            input_new_column.focus()
+        },
+        
+        add_div_is_not_focus() {
+            const column_title_doc = document.getElementById('new_column_input')
             let number = columns_counter + 1
             
             if (column_title_doc.value != "") {
@@ -47,17 +71,18 @@ export default {
                 columns_counter = 0
                 this.$emit("asd")
             }
+
+            const init_div = document.getElementById('init_add_column')
+            const add_div = document.getElementById('div_add_column')
+            init_div.style.display = 'flex'
+            add_div.style.display = 'none'
         }
     },
 
     computed: {
         sortedBoard: function () {
-            var _ = require('lodash');
+            var _ = require('lodash')
             return _.orderBy(this.board, 'number')
-
-            // let sorted_board = this.board
-            // alert(sorted_board)
-            // return sorted_board.sort((a, b) => a.number > b.number ? 1 : -1);
         }
     },
 
@@ -78,6 +103,37 @@ div {
     margin: 0rem 1rem;
 }
 
+#div_prikol {
+    height: 600px;
+    width: 30px;
+    min-width: 30px;
+}
+
+#h1_init_add_column {
+    font-size: 48px;
+    height: 50px;
+    line-height: 48px;
+    width: 50px;
+    margin: 0 0;
+    padding: 0 0;
+    color: #9ca5dbcd;
+    vertical-align: middle;
+}
+
+#init_add_column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--secondary);
+    border: 2px dotted #9ca5dbcd;
+    height: 600px;
+    /* background-color: var(--primary); */
+    width: 300px;
+    min-width: 300px;
+    cursor: pointer;
+}
+
 #new_column_h3 {
     width: 100%;
     text-align: center;
@@ -86,10 +142,11 @@ div {
 
 #column_list_main {
     display: flex;
-    padding: 50px;
-    min-width: 100vw;
+    padding: 50px 0;
+    min-width: 70vw;
     text-align: start;
     align-items: flex-start;
+    
 
 }
 
@@ -101,6 +158,7 @@ div {
 #new_column_button {
     margin: 0 0;
     width: 100%;
+    height: 20px;
     margin-top: 5px;
     padding: auto;
     text-align: center;
@@ -111,14 +169,23 @@ div {
     cursor: pointer;
 }
 
-.div_add_column {
+#div_add_column {
+    display: none;
     height: 600px;
-    /* background-color: var(--primary); */
     width: 300px;
+    min-width: 300px;
     padding: 30px;
-    padding-right: calc(0vh + scrollbarWidth);
+    /* background-color: #9ca5dbcd; */
+    background-color: var(--secondary);
+    border: 2px dotted #9ca5dbcd;
+    border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    
+    /* background-color: var(--secondary);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    
     /* border-radius: 10px; */
-    border: 3px dotted var(--primary);
+    /* border: 3px dotted var(--primary); */
 
     /* height: 15vh;
     width: 25vh;

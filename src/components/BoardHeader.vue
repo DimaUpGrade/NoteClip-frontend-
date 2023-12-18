@@ -52,9 +52,15 @@ export default {
 }
 
 #return_button_p {
+    height: 100%;
+    display: flex;
     color: var(--primary);
     text-decoration: underline;
+    font-weight: 16px;
+    font-size: 16px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-div {
@@ -64,7 +70,7 @@ export default {
     width: calc(100vw - scrollbarWidth);
     min-height: 40px;
     margin: 0vh 0 1vh 0;
-    padding: 5vh 0;
+    padding: 35px 0;
     background-color: var(--text);
 }
 </style>

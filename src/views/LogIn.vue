@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <h1>Страница входа</h1>
         <div class="data-block">
             <div class="data-block-elements">
@@ -8,7 +8,7 @@
             </div>
             <div class="data-block-elements">
                 <input type="text" id="login">
-                <input type="text" id="password">
+                <input type="password" id="password">
             </div>
         </div>
 
@@ -24,6 +24,8 @@
 
 <script>
 import { API_URL, axios, login_account } from '../network';
+import { tokenIsSet } from '../validation';
+import router from '../router';
 
 export default {
     data() {
@@ -34,6 +36,11 @@ export default {
     methods: {
         loginAccount() {
             login_account(login.value, password.value)
+        }
+    },
+    mounted() {
+        if (tokenIsSet()) {
+            router.replace({ path: '/board-list/' });
         }
     }
 }
@@ -53,4 +60,9 @@ h1 {
     margin-top: 5vh;
     color: red;
 }
+
+.wrapper {
+    margin: 20vh auto;
+}
+
 </style>

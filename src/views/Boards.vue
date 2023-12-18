@@ -18,8 +18,9 @@
 import LogOutButton from '@/components/LogOutButton.vue';
 import BoardList from '@/components/BoardList.vue';
 import { tokenIsSet } from '../validation';
-import { API_URL, axios, get_user_info } from '../network';
 import router from '../router';
+import { API_URL, axios, get_user_info } from '../network';
+
 
 // let username = 'username';
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <h1>Страница регистрации</h1>
 
         <div class="data-block">
@@ -24,6 +24,8 @@
 
 <script>
 import { API_URL, axios, login_account } from '../network';
+import { tokenIsSet } from '../validation';
+import router from '../router';
 
 export default {
     data() {
@@ -39,7 +41,7 @@ export default {
 
             if (email_ != "" && login_ != "" && password_ != "") {
                 if (email_.match(regExp_email)) {
-                    alert('email norm');
+                    // alert('email norm');
                     // тут функцию проверки логина на занятость надо с вызовом апи
                     //
 
@@ -68,6 +70,12 @@ export default {
 
 
             // alert_h1.style.display= "block";
+        }
+    },
+
+    mounted() {
+        if (tokenIsSet()) {
+            router.replace({ path: '/board-list/' });
         }
     }
 }
@@ -140,4 +148,9 @@ input[type="password"] {
     margin-bottom: 1vh;
     padding: 5px 7px 7px 7px;
 }
+
+.wrapper {
+    margin: 20vh auto;
+}
+
 </style>

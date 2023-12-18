@@ -28,8 +28,10 @@ export default {
         adding_task(id_column) {
             const textarea_id = 'title_new_task_' + id_column;
             let text = document.getElementById(textarea_id);
-            add_task(id_column, text.value)
-            this.$emit("asd")
+            if (text.value != "") {
+                add_task(id_column, text.value)
+                this.$emit("asd")
+            }
         }
     },
     setup(props, context) {
@@ -55,7 +57,7 @@ export default {
 <style scoped>
 .task_list {
     height: 50vh;
-    margin-top: 2rem;
+    margin-top: 5px;
     /* background-color: blueviolet; */
     font-size: 15px;
     overflow: auto;

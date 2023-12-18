@@ -4,7 +4,7 @@
     </header> -->
     <BoardHeader v-bind:title="title" />
     <div id="main_div_board">
-        <ColumnList @asd="rerender_content()" v-bind:board="board" :key="board"/>
+        <ColumnList @asd="rerender_content()" v-bind:board="board" :key="board" />
     </div>
     <!-- {{ board.id }} -->
 </template>
@@ -32,7 +32,7 @@ export default {
     methods: {
         rerender_content() {
             // get_data_board(this.id_table).then(result => this.board = result)
-            setTimeout(async () => {get_data_board(this.id_table).then(result => this.board = result)}, 300);
+            setTimeout(async () => { get_data_board(this.id_table).then(result => this.board = result) }, 300);
         }
     },
     components: {
@@ -51,7 +51,7 @@ export default {
             .then(response => { this.title = response.data.title });
 
 
-        
+
         get_data_board(this.id_table).then(result => this.board = result)
     }
 }
@@ -67,13 +67,24 @@ body {
 #main_div_board {
     display: flex;
     align-items: top;
-    padding: 10px 100px;
+    padding: 10px;
     margin: 2em auto;
     justify-content: center;
     height: 86vh;
     width: 95vw;
     border-radius: 10px;
-    background-color: #88a2c2;
+    /* background-color: #88a2c2; */
+    background-color: var(--secondary);
     overflow: auto;
+    -webkit-box-shadow: -3px 3px 8px 0px rgba(34, 60, 80, 0.2) inset;
+    -moz-box-shadow: -3px 3px 8px 0px rgba(34, 60, 80, 0.2) inset;
+    box-shadow: -3px 3px 8px 0px rgba(34, 60, 80, 0.2) inset;
 }
+
+::-webkit-scrollbar-track { 
+    background-color: transparent;
+    border: none;
+} 
+
+
 </style>

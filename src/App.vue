@@ -17,7 +17,7 @@ body {
   /* align-items: center; */
   flex-direction: column;
   height: 100vh;
-  width: calc(100vw - scrollbarWidth);
+  width: calc(100vw - (100vw - 100%));
 }
 
 #app {
@@ -40,4 +40,25 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid #9ca5dbcd;
+    background-color: #9ca5dbcd;
+}
+::-webkit-scrollbar-track { 
+    background-color: var(--background);
+    border: 1px solid #9ca5dbcd; 
+    border-radius: 0px; 
+} 
+
 </style>

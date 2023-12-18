@@ -1,11 +1,9 @@
 <template>
-    <div>
+    <div class="wrapper_board_list">
         <BoardItem v-for="board in boards" v-bind:board="board" />
-
         <div @click="open_form()" class="new_board" id="new_form_button">
             <h1 id="h1_new_board">+</h1>
         </div>
-
         <div class="new_board" id="new_board_form">
             <input id="title_field" type="text" placeholder="Название доски">
             <textarea name="description_field" id="description_field" cols="25"
@@ -53,6 +51,12 @@ div {
     display: flex;
     padding: 2rem;
     margin: 2rem;
+}
+
+.wrapper_board_list {
+    display: inline-flex;    
+    width: calc(100vw - scrollbarWidth);
+    height: 60vh;
 }
 
 #create_board_button {
@@ -104,7 +108,7 @@ div {
     color: var(--text);
 
     /* align-items: center; */
-    align-items: start;
+    align-items: flex-start;
 
     text-align: center;
     cursor: pointer;

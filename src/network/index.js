@@ -135,6 +135,20 @@ function remove_task (id_task) {
         });
 }
 
+function edit_task (id_task, new_title) {
+    axios
+        .patch(API_URL + '/api/tasks/' + id_task + '/', {
+            'title': new_title
+        }, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem("token")
+            }
+        })
+        .catch((error) => {
+            alert("Произошла ошибка! \n " + error)
+        });
+}
+
 function remove_column (id_column) {
     axios
         .delete(API_URL + '/api/columns/' + id_column + '/', {}, {
@@ -154,7 +168,8 @@ export {
     login_account, 
     change_task_column, 
     get_data_board, 
-    add_task, 
+    add_task,
+    edit_task, 
     remove_task, 
     add_column, 
     remove_column,

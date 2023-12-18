@@ -26,7 +26,7 @@ export default {
                 }
             })
                 .then((response) => {
-                    alert("Успешный выход!");
+                    // alert("Успешный выход!");
                     localStorage.removeItem("token");
                     // localStorage.setItem("token", null);
                     router.push({ path: '/' });
