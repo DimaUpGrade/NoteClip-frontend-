@@ -1,34 +1,70 @@
 <template>
     <div class="header_elements_zero header-div">
-        <h1 class="header_elements_zero header-h1">{{ title }}</h1>
+        <div class="inline_div">
+            <div id="return_button" @click="return_to_board_list()">
+                <p id="return_button_p">Назад</p>
+            </div>
+            <h1 class="header_elements_zero header-h1">{{ title }}</h1>
+        </div>
+
     </div>
 </template>
 
 <script>
-    export default {
-        props: ['title']
+import router from '../router';
+
+export default {
+    props: ['title'],
+    methods: {
+        return_to_board_list() {
+            router.push({ path: '/board-list' });
+        }
     }
+}
 </script>
 
 <style scoped>
-    .header_elements_zero {
-        padding: 0;
-        margin: 0;
-    }
+.inline_div {
+    display: inline-flex;
+    width: 100%;
+}
 
-    .header-h1 {
-        font-size: 3vh;
-    }
+.header_elements_zero {
+    padding: 0;
+    margin: 0;
+}
 
-    .header-div {
-        display: flex;
+.header-h1 {
+    display: inline;
+    font-size: 32px;
+    width: 20%;
+    margin: 0;
+    margin: 0 40% 0 30%;
+    text-align: center;
+    vertical-align: bottom;
+    color: var(--primary);
+}
+
+#return_button {
+    color: var(--primary);
+    width: 8%;
+    padding-left: 2%;
+}
+
+#return_button_p {
+    color: var(--primary);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.header-div {
+    /* display: flex;
         align-items: center;
-        justify-content: center;
-        width: calc(100vw - scrollbarWidth);
-        height: 10vh;
-        margin: 5vh 0 10vh 0;
-        padding: 5vh 0;
-        background-color: yellow;
-    }
-
+        justify-content: center; */
+    width: calc(100vw - scrollbarWidth);
+    min-height: 40px;
+    margin: 0vh 0 1vh 0;
+    padding: 5vh 0;
+    background-color: var(--text);
+}
 </style>

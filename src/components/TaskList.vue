@@ -1,8 +1,8 @@
 <template>
+    
     <div class="task_list" @drop="onDrop($event, id_column)" @dragover.prevent @dragenter.prevent>
         <TaskItem v-for="task in tasks" v-bind:task="task" />
-    </div>
-    <div class="new_task">
+        <div class="new_task">
         <div v-bind:id="'column_new_task_' + id_column" class="column_new_task">
             <textarea v-bind:id="'title_new_task_' + id_column" class="column_new_task" rows="3"></textarea>
         </div>
@@ -10,6 +10,9 @@
             <p class="add_new_task">+</p>
         </div>
     </div>
+    </div>
+    
+    
 </template>
 
 <script>
@@ -51,9 +54,13 @@ export default {
 
 <style scoped>
 .task_list {
+    height: 50vh;
     margin-top: 2rem;
     /* background-color: blueviolet; */
     font-size: 15px;
+    overflow: auto;
+    padding-right: 10px;
+    width: 250px;
 }
 
 .task_div {
@@ -63,9 +70,10 @@ export default {
 }
 
 .add_new_task {
-    margin-top: 0px;
+    margin-top: 5px;
     padding: auto;
     text-align: center;
+    cursor: pointer;
 }
 
 .column_new_task div {

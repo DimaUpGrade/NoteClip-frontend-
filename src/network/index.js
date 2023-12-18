@@ -6,6 +6,16 @@ import axios from 'axios';
 const API_URL = "https://hoofeddragon417.pythonanywhere.com";
 import router from '../router';
 
+async function get_user_info () {
+    const result = await axios
+        .get(API_URL + '/api/user/', {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem("token")
+            }
+        })
+    return result.data.user.username
+}
+
 // авторизация
 function login_account(username_, password_) {
     axios.post(API_URL + '/api/login/', {
@@ -49,6 +59,20 @@ async function get_data_board(id_board) {
     return result.data.columns
 }
 
+function add_board(title, description) {
+    axios
+        .post(API_URL + '/api/boards/', {
+            "title": title,
+            "description": description
+        }, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem("token")
+            }
+        })
+        .catch((error) => {
+            alert("Произошла ошибка! \n " + error)
+        });
+}
 
 // сделать миграцию с возможностью передавать null в priority и finish_by
 function add_task(id_column, title="test", body = "test", color = 1, priority = 1, finish_by = null) {
@@ -83,9 +107,10 @@ function add_task(id_column, title="test", body = "test", color = 1, priority = 
         });
 }
 
-function add_column (title, number) {
+function add_column (id_board, title, number) {
     axios
         .post(API_URL + '/api/columns/', {
+            "id_board": id_board,
             "title": title,
             "number": number
         }, {
@@ -110,5 +135,29 @@ function remove_task (id_task) {
         });
 }
 
+function remove_column (id_column) {
+    axios
+        .delete(API_URL + '/api/columns/' + id_column + '/', {}, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem("token")
+            }
+        })
+        .catch((error) => {
+            alert("Произошла ошибка! \n " + error)
+        });
+}
 
-export { API_URL, axios, login_account, change_task_column, get_data_board, add_task, remove_task, add_column }
+
+export { 
+    API_URL, 
+    axios, 
+    login_account, 
+    change_task_column, 
+    get_data_board, 
+    add_task, 
+    remove_task, 
+    add_column, 
+    remove_column,
+    get_user_info,
+    add_board 
+}

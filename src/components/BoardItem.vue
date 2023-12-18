@@ -33,6 +33,8 @@ export default {
 
 <style>
 .board-in-boardlist {
+    display: flex;
+    flex-direction: column;
     width: 320px;
     height: 150px;
     background-color: var(--primary);

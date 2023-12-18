@@ -1,6 +1,8 @@
 <template>
     <div class="logout_button" @click="logout">
-        <button>Выйти из аккаунта</button>
+        <p id="logout_p">
+            Выйти из аккаунта
+        </p>
     </div>
 </template>
 
@@ -44,7 +46,22 @@ export default {
 
 <style scoped>
 .logout_button {
-    width: 10vw;
-    height: 3vh;
+    width: 100%;
+    height: 30%;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    cursor: pointer;
 }
+
+#logout_p {
+    color: var(--secondary) !important;
+    text-align: start;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    color: var(--accent);
+    text-decoration: underline;
+    width: 100%;
+    height: 100%;
+}
+
 </style>
