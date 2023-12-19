@@ -28,7 +28,6 @@ export default {
                 .then((response) => {
                     // alert("Успешный выход!");
                     localStorage.removeItem("token");
-                    // localStorage.setItem("token", null);
                     router.push({ path: '/' });
 
                 })
@@ -38,7 +37,6 @@ export default {
                         // alert("Ошибка!");
                     }
                 });
-
         }
     }
 }
@@ -63,5 +61,4 @@ export default {
     width: 100%;
     height: 100%;
 }
-
 </style>

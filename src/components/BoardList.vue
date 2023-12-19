@@ -31,7 +31,6 @@ export default {
             const description = document.getElementById('description_field').value
 
             if (title != '' && description != '') {
-                // alert(title)
                 add_board(title, description)
                 this.$emit("refresh_list")
             }
@@ -97,19 +96,13 @@ div {
 .new_board {
     display: flex;
     flex-direction: column;
-    
-
     vertical-align: middle;
     min-width: 320px;
     width: 320px;
     height: 150px;
     border: 2px dotted var(--secondary);
-    /* background-color: var(--secondary); */
     color: var(--text);
-
-    /* align-items: center; */
     align-items: flex-start;
-
     text-align: center;
     cursor: pointer;
 }

@@ -64,9 +64,6 @@ export default {
 }
 
 .header-div {
-    /* display: flex;
-        align-items: center;
-        justify-content: center; */
     width: calc(100vw - scrollbarWidth);
     min-height: 40px;
     margin: 0vh 0 1vh 0;

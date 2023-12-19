@@ -1,12 +1,10 @@
 <template>
     <div id="column_list_main">
         <ColumnItem v-for="column in sortedBoard" v-bind:column="column" @asd="toParent()"
-            @increment_counter_columns="columns_counter_increment" @increment_counter_to_zero="columns_counter_to_zero()"/>
-        
+            @increment_counter_columns="columns_counter_increment" @increment_counter_to_zero="columns_counter_to_zero()" />
         <div id="init_add_column" @click="init_add_new_column()">
             <h1 id="h1_init_add_column">+</h1>
         </div>
-        
         <div id="div_add_column" @focusout="add_div_is_not_focus()">
             <!-- <h3 id="new_column_h3">Новый столбец</h3> -->
             <input type="text" id="new_column_input" placeholder="Название нового столбца">
@@ -14,7 +12,6 @@
                 <p>+</p>
             </div> -->
         </div>
-
         <div id="div_prikol"></div>
     </div>
 </template>
@@ -45,7 +42,7 @@ export default {
         // add_new_column() {
         //     const column_title_doc = document.getElementById('new_column_input')
         //     let number = columns_counter + 1
-            
+
         //     if (column_title_doc.value != "") {
         //         add_column(this.id_board, column_title_doc.value, number)
         //         columns_counter = 0
@@ -61,11 +58,11 @@ export default {
             add_div.style.display = 'block'
             input_new_column.focus()
         },
-        
+
         add_div_is_not_focus() {
             const column_title_doc = document.getElementById('new_column_input')
             let number = columns_counter + 1
-            
+
             if (column_title_doc.value != "") {
                 add_column(this.id_board, column_title_doc.value, number)
                 columns_counter = 0
@@ -128,7 +125,6 @@ div {
     background-color: var(--secondary);
     border: 2px dotted #9ca5dbcd;
     height: 600px;
-    /* background-color: var(--primary); */
     width: 300px;
     min-width: 300px;
     cursor: pointer;
@@ -146,8 +142,6 @@ div {
     min-width: 70vw;
     text-align: start;
     align-items: flex-start;
-    
-
 }
 
 #new_column_input {
@@ -175,31 +169,15 @@ div {
     width: 300px;
     min-width: 300px;
     padding: 30px;
-    /* background-color: #9ca5dbcd; */
     background-color: var(--secondary);
     border: 2px dotted #9ca5dbcd;
     border-radius: 10px;
-    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
-    
-    /* background-color: var(--secondary);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
-    
-    /* border-radius: 10px; */
-    /* border: 3px dotted var(--primary); */
-
-    /* height: 15vh;
-    width: 25vh;
-    padding: 3vh;
-    border: 3px dotted var(--primary); */
-
 }
 
 .h2_column_title {
     font-size: 2.0vh;
-    /* text-decoration: underline; */
     text-align: center;
     color: white;
     -webkit-text-stroke: 0.14vh var(--text);
-
 }
 </style>

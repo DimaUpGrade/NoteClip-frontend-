@@ -20,7 +20,6 @@
 import TaskItem from '@/components/TaskItem.vue'
 import { change_task_column, add_task } from '../network';
 import { defineEmits, ref } from 'vue'
-// import { id_cChange } from '../views/Board.vue'
 
 export default {
     props: ["tasks", "id_column"],
@@ -38,7 +37,6 @@ export default {
         const emit = defineEmits(["asd"]);
         function onDrop(e, id_column) {
             const task = e.dataTransfer.getData('task_id');
-            // alert('column: ' + id_column + ' task: ' + task);
             change_task_column(id_column, task);
             context.emit("asd");
         }
@@ -49,7 +47,6 @@ export default {
     },
 
     components: { TaskItem }
-
 }
 
 </script>
@@ -58,7 +55,6 @@ export default {
 .task_list {
     height: 50vh;
     margin-top: 5px;
-    /* background-color: blueviolet; */
     font-size: 15px;
     overflow: auto;
     padding-right: 10px;
@@ -79,7 +75,6 @@ export default {
 }
 
 .column_new_task div {
-    /* display: none; */
     border-radius: 0.3vw;
     background-color: aqua;
     width: 90%;

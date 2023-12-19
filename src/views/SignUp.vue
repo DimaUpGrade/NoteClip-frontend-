@@ -41,10 +41,9 @@ export default {
 
             if (email_ != "" && login_ != "" && password_ != "") {
                 if (email_.match(regExp_email)) {
-                    // alert('email norm');
+                    //
                     // тут функцию проверки логина на занятость надо с вызовом апи
                     //
-
                     axios.post(API_URL + '/api/register/', {
                         username: login_,
                         password: password_,
@@ -67,9 +66,6 @@ export default {
             else {
                 alert("Не все поля заполнены!");
             }
-
-
-            // alert_h1.style.display= "block";
         }
     },
 
@@ -141,7 +137,6 @@ input[type="password"] {
 .data-block-elements input {
     margin-bottom: 1vh;
     padding: 7px;
-
 }
 
 .data-block-elements p {

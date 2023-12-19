@@ -20,9 +20,6 @@
 import { remove_task, edit_task } from '../network';
 
 export default {
-    data() {
-
-    },
     props: {
         task: {
             type: Object,
@@ -104,7 +101,6 @@ export default {
     display: none;
     width: 200px;
     align-self: center;
-    /* height: 50px; */
     padding: 0 5px;
     resize: none;
     margin: 5px 1vw 0 1vw!important;
@@ -117,7 +113,6 @@ export default {
 
 button {
     border: 0.2px solid var(--background);
-    /* border: none; */
     box-shadow: 0px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
     text-align: center;
     font-size: 11px;

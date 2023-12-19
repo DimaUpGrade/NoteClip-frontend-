@@ -162,9 +162,10 @@ function remove_column (id_column) {
         });
 }
 
-function edit_column (id_column, new_number) {
+function edit_column (id_column, new_title, new_number) {
     axios
         .patch(API_URL + '/api/columns/' + id_column + '/', {
+            'title': new_title,
             'number': new_number
         }, {
             headers: {

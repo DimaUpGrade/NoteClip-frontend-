@@ -3,13 +3,11 @@
         <h2 @mouseenter="title_column_is_hover(column.id)" @mouseleave="title_column_is_over(column.id)"
             class="h2_column_title">
             <div class="control_pannel_column">
-                <input type="button" @click="edit_column_init(column.id)" class="edit_column"
+                <input type="button" @click="edit_column_init(column.id, column.title, column.number)" class="edit_column"
                     v-bind:id="'edit_column_button_' + column.id" value="✎">
                 <input type="button" @click="delete_column(column.id)" class="remove_column"
                     v-bind:id="'remove_button_' + column.id" value="X">
             </div>
-
-
             {{ column.title }}
         </h2>
         <TaskList @asd="toParent()" v-bind:id_column="column.id" v-bind:tasks="tasks" />
@@ -17,17 +15,12 @@
 </template>
 
 <script>
-
-// v-bind:id="'remove_button_' + column.id"
-
 import TaskList from '@/components/TaskList.vue'
 import { remove_column, edit_column } from '../network';
 
 export default {
     data() {
         return {
-            //wrong
-            // title_is_hover: false,
             tasks: this.column.tasks
         }
     },
@@ -58,8 +51,7 @@ export default {
             remove_button.style.visibility = "hidden"
             edit_button.style.visibility = "hidden"
         },
-        edit_column_init(id_column) {
-            // alert('Типа вызов метода эдита колумна')
+        edit_column_init(id_column, current_title, current_number) {
             function rerender(obj) {
                 obj.$emit("increment_counter_to_zero")
                 obj.$emit("asd")
@@ -80,7 +72,16 @@ export default {
                             #ok button {background-color: #9ca5dbcd}\
                         </style>\
                         <div id="demo1-form" style="display: inline-block">\
-                            <div class="demo1-row demo1-mb-1"><label for="new_number_column">Новый номер столбца:</label><input type="text" id="new_number_column" required></div>\
+                            <div class="demo1-row demo1-mb-1"><label for="new_number_column">Название столбца:</label><input type="text" id="new_title_column" value="'
+                                +
+                                current_title
+                                +
+                                '" required></div>\
+                            <div class="demo1-row demo1-mb-1"><label for="new_number_column">Новый номер столбца:</label><input type="text" id="new_number_column" value="'
+                                +
+                                current_number
+                                +
+                                '" required></div>\
                         </div>',
                 buttons: { ok: 'Изменить', cancel: 'Отмена' },
                 effect: '3d_rotate_bottom',
@@ -88,31 +89,23 @@ export default {
                 onok: function () {
                     document.getElementById('demo1-form').classList.add('demo1-validated');
 
+                    let new_title_column = document.getElementById('new_title_column').value;
                     let new_number_column = document.getElementById('new_number_column').value;
                     
-                    if (!new_number_column) {
+                    if (!new_number_column || !new_title_column) {
                         return false;
                     }
 
-                    edit_column(id_column, new_number_column)
+                    edit_column(id_column, new_title_column, new_number_column)
                     rerender(context_)
                 }
             });
-
-            // this.$emit("increment_counter_to_zero")
-            // this.$emit("asd")
         }
-    },
-
-    created() {
-        // const id = this.$route.params.id;
-        // this.tasks = board_1.columns
     },
 
     mounted() {
         this.$emit("increment_counter_columns", this.column.number)
     },
-
 
     components: { TaskList }
 }
@@ -121,21 +114,16 @@ export default {
 <style scoped>
 .div_column {
     height: 600px;
-    /* background-color: var(--primary); */
     width: 300px;
     padding: 30px;
     background-color: #9ca5dbcd;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding-right: calc(0vh + scrollbarWidth);
     border-radius: 10px;
-    /* border: 3px dotted var(--primary); */
-
-
 }
 
 .h2_column_title {
     font-size: 24px;
-    /* text-decoration: underline; */
     text-align: center;
     color: var(--primary);
     background-color: var(--text);
@@ -170,7 +158,6 @@ export default {
 }
 
 .remove_column {
-    /* background-color: red; */
     display: inline;
     visibility: hidden;
     margin: 0 0 0 6px;
@@ -180,7 +167,6 @@ export default {
     font-weight: bold;
     color: rgb(249, 132, 132);
     border: 0.2px solid var(--background);
-    /* border: none; */
     box-shadow: 0px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
     text-align: center;
     font-size: 11px;

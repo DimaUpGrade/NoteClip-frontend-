@@ -26,9 +26,6 @@ import router from '../router';
 import { tokenIsSet } from '../validation';
 
 export default {
-  data () {
-
-  },
   methods : {
     go_login () {
       router.push({ path: '/login'})
@@ -44,23 +41,11 @@ export default {
     }
 }
 
-
-
-// @ is an alias to /src
-// import StartContent from '@/components/StartContent.vue'
-
-// export default {
-//   name: 'HomeView',
-//   components: {
-//     StartContent
-//   }
-// }
 </script>
 
 <style>
 :root {
   --text: #2c3e50;
-  /* --text: #020309; */
   --background: #eaecfb;
   --primary: #e7da83;
   --secondary: #ccd1f5;
@@ -80,15 +65,6 @@ h1 {
   max-width: 30vw;
   height: auto;
 }
-
-/* .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-} */
 
 #logo_h1 {
   padding-bottom: 20px;

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { API_URL, axios, login_account } from '../network';
+import { login_account } from '../network';
 import { tokenIsSet } from '../validation';
 import router from '../router';
 

@@ -1,27 +1,17 @@
 <template>
-    <!-- <header>
-        asd
-    </header> -->
     <BoardHeader v-bind:title="title" />
     <div id="main_div_board">
         <ColumnList @asd="rerender_content()" v-bind:board="board" :key="board" />
     </div>
-    <!-- {{ board.id }} -->
 </template>
 
 <script>
 
 import BoardHeader from '@/components/BoardHeader.vue'
 import ColumnList from '@/components/ColumnList.vue'
-// import { onMounted, ref, watch } from 'vue'
-
 import { API_URL, axios, get_data_board } from '../network';
 
 export default {
-    setup() {
-
-    },
-
     data() {
         return {
             board: {},
@@ -31,7 +21,6 @@ export default {
     },
     methods: {
         rerender_content() {
-            // get_data_board(this.id_table).then(result => this.board = result)
             setTimeout(async () => { get_data_board(this.id_table).then(result => this.board = result) }, 300);
         }
     },
@@ -50,8 +39,6 @@ export default {
             })
             .then(response => { this.title = response.data.title });
 
-
-
         get_data_board(this.id_table).then(result => this.board = result)
     }
 }
@@ -63,7 +50,6 @@ body {
     padding: auto 0;
 }
 
-
 #main_div_board {
     display: flex;
     align-items: top;
@@ -73,7 +59,6 @@ body {
     height: 86vh;
     width: 95vw;
     border-radius: 10px;
-    /* background-color: #88a2c2; */
     background-color: var(--secondary);
     overflow: auto;
     -webkit-box-shadow: -3px 3px 8px 0px rgba(34, 60, 80, 0.2) inset;
@@ -85,6 +70,5 @@ body {
     background-color: transparent;
     border: none;
 } 
-
 
 </style>

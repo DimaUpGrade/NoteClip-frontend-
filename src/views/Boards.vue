@@ -22,8 +22,6 @@ import router from '../router';
 import { API_URL, axios, get_user_info } from '../network';
 
 
-// let username = 'username';
-
 export default {
     name: 'Boards',
     methods: {
@@ -52,7 +50,6 @@ export default {
         }
 
         get_user_info().then(result => this.username = result);
-        // alert(get_user_info())
     },
     data() {
         return {
@@ -109,6 +106,5 @@ header {
     color: var(--secondary);
     /* -webkit-text-stroke: 1.2px var(--secondary); */
 }
-
 
 </style>
