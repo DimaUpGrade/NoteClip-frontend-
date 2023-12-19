@@ -21,7 +21,7 @@
 // v-bind:id="'remove_button_' + column.id"
 
 import TaskList from '@/components/TaskList.vue'
-import { remove_column } from '../network';
+import { remove_column, edit_column } from '../network';
 
 export default {
     data() {
@@ -58,8 +58,14 @@ export default {
             remove_button.style.visibility = "hidden"
             edit_button.style.visibility = "hidden"
         },
-        edit_column_init(column) {
+        edit_column_init(id_column) {
             // alert('Типа вызов метода эдита колумна')
+            function rerender(obj) {
+                obj.$emit("increment_counter_to_zero")
+                obj.$emit("asd")
+            }
+
+            let context_ = this
 
             xdialog.open({
                 title: 'Редактирование столбца',
@@ -67,13 +73,13 @@ export default {
                         <style>\
                             .demo1-mb-1 { margin-bottom: 1em; }\
                             .demo1-row { text-align: center; }\
-                            .demo1-row label { min-width: 6em; display: inline-block; text-align: left; margin-right: 0.5em; }\
+                            .demo1-row label { min-width: 6em; display: inline-block; text-align: left; margin: 0 auto 10px auto; }\
                             .demo1-row input { padding: 0.3em; outline: none; min-width: 12em; }\
                             .demo1-validated input { border: #9ca5dbcd 2px solid; }\
                             .demo1-validated input:invalid { border: red 2px solid; }\
-                            .ok button {background-color: #9ca5dbcd}\
+                            #ok button {background-color: #9ca5dbcd}\
                         </style>\
-                        <div id="demo1-form">\
+                        <div id="demo1-form" style="display: inline-block">\
                             <div class="demo1-row demo1-mb-1"><label for="new_number_column">Новый номер столбца:</label><input type="text" id="new_number_column" required></div>\
                         </div>',
                 buttons: { ok: 'Изменить', cancel: 'Отмена' },
@@ -84,17 +90,17 @@ export default {
 
                     let new_number_column = document.getElementById('new_number_column').value;
                     
-
                     if (!new_number_column) {
                         return false;
                     }
 
-                    xdialog.alert('Welcome, ' + new_number_column);
+                    edit_column(id_column, new_number_column)
+                    rerender(context_)
                 }
             });
 
-            this.$emit("increment_counter_to_zero")
-            this.$emit("asd")
+            // this.$emit("increment_counter_to_zero")
+            // this.$emit("asd")
         }
     },
 

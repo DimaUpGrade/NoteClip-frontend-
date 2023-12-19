@@ -31,7 +31,7 @@ export default {
             const description = document.getElementById('description_field').value
 
             if (title != '' && description != '') {
-                alert(title)
+                // alert(title)
                 add_board(title, description)
                 this.$emit("refresh_list")
             }

@@ -96,7 +96,8 @@ function add_task(id_column, title="test", body = "test", color = 1, priority = 
             "body": body,
             "color": color,
             "priority": priority,
-            "finish_by": finish_by
+            "finish_by": finish_by,
+            "order": 1
         }, {
             headers: {
                 'Authorization': 'Token ' + localStorage.getItem("token")
@@ -161,6 +162,20 @@ function remove_column (id_column) {
         });
 }
 
+function edit_column (id_column, new_number) {
+    axios
+        .patch(API_URL + '/api/columns/' + id_column + '/', {
+            'number': new_number
+        }, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem("token")
+            }
+        })
+        .catch((error) => {
+            alert("Произошла ошибка! \n " + error)
+        });
+}
+
 
 export { 
     API_URL, 
@@ -171,7 +186,8 @@ export {
     add_task,
     edit_task, 
     remove_task, 
-    add_column, 
+    add_column,
+    edit_column, 
     remove_column,
     get_user_info,
     add_board 

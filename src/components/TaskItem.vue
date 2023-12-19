@@ -97,6 +97,7 @@ export default {
     padding: 1vh 1vw;
     max-width: 230px;
     word-break: break-all;
+    word-break: keep-all;
 }
 
 .edit_task_textarea {
